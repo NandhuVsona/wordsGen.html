@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Letter Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0%;
+      padding: 0%;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #35A29F;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      gap:30px;
+    }
+
+    .container {
+      background-color: #0B666A;
+      width: 500px;
+      height: 600px;
+      color: white;
+      padding: 50px 5px 5px 5px;
+      border-radius: 20px;
+      position: relative;
+    }
+
+    #input {
+      width: 250px;
+      height: 45px;
+      outline: none;
+      font-size: 20px;
+
+    }
+    textarea{
+      min-width:400px;
+      min-height: 250px;
+      text-align:left;
+      padding: 8px;
+      outline:none;
+      font-size:16px;
+    }
+
+    button {
+      width: 140px;
+      height: 45px;
+      font-size: 20px;
+      transition: all .5s;
+      background-color: #01f9f9;
+      border-radius: 10px;
+    }
+
+    button:hover {
+      scale: 1.1;
+    }
+
+    .box {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap:40px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #output {
+      font-size: 35px;
+      font-weight: 700;
+    }
+
+    input:invalid {
+      animation: shake .3s linear;
+      border: 2px solid red;
+    }
+
+    #share {
+      background-color: rgb(242, 255, 0);
+      animation: share 1s linear infinite;
+      display: none;
+
+    }
+
+    @keyframes share {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    a {
+      color: black;
+      text-decoration: none;
+    }
+
+    @keyframes shake {
+      0% {
+        transform: translateX(5px);
+      }
+
+      50% {
+        transform: translateX(-5px);
+      }
+
+      100% {
+        transform: translateX(5px);
+      }
+    }
+
+    @media screen and (max-width:768px) {
+      .container {
+        margin: 20px;
+        width: 350px;
+        height: 500px;
+      }
+
+      #share {
+        display: block;
+      }
+      textarea{
+      min-width:320px;
+      min-height: 250px;
+      text-align:left;
+      padding: 8px;
+      outline:none;
+      font-size:16px;
+    }
+
+
+      .box {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: -20px;
+      }
+      #output {
+      font-size: 25px;
+      font-weight: 700;
+      
+    }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box"> 
+      <h2>Words Generator</h2>
+      <textarea autocomplete="off"  cols="35" rows="10" id="input" placeholder="Enter The Paragraph..."
+        pattern="[a-z]*[A-Z]*"></textarea>
+      <button type="submit" onclick="calculate()">Calculate</button>
+      <div id="output"></div>
+    </div>
+  </div>
+  <button id="share"><a href="https://api.whatsapp.com/send?text=${whatsappMessage}">Share</a></button> 
+  <script>
+    function calculate() {
+      let input = document.getElementById("input").value;
+
+      if (input ) {
+        let result = (input.trim().split(" ")).length;
+     
+      
+        const output = document.getElementById("output").innerHTML = "Total Words = "+ result;
+
+      } else {
+        const result = document.getElementById("output").innerHTML = "";
+      }
+    }
+  </script>
+</body>
+
+</html>
+
