@@ -1,129 +1,1241 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Loader</title>
   <style>
-    *{
+    * {
       margin: 0%;
-      padding: 0%;
+      padding: 0;
       box-sizing: border-box;
-     
     }
-    .container{
+
+    .load-container {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       flex-direction: column;
-      text-align: center;
-      background: linear-gradient(to right bottom,rgb(0, 26, 255),rgb(0, 255, 123));
+      gap: 10px;
+      visibility: hidden;
     }
-    .boxes{
-      display: grid;
-      grid-template-columns: repeat(3,100px);
-      grid-template-rows: repeat(3,100px);
-      border: 3px solid rgb(255, 255, 255);
-      outline: none;
-      border-radius:3px;
-      box-shadow: 0px 0px 15px #333;
-     
+
+    .show {
+      visibility: hidden;
     }
-    .inputbox{
-      font-size: 50px;
-      font-family: sans-serif;
-      text-align: center;
-      border: 3px solid black;
-      outline: none;
-      font-weight: bold;
-      color: rgb(0, 0, 0);
-      cursor: pointer;
-    }
-    .h1{
-      line-height: 40px;
-      margin-bottom: 20px;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    }
-    #error{
-      font-size:30px;
-      font-weight: bold;
-      margin-top: 20px;
-      color: rgb(255, 255, 255);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      
-    }
-    input:invalid{
-      background-color: red;
-    }
-    input:valid{
-      background-color: rgb(206, 232, 12);
-    }
-    button{
+
+    .loader {
       width: 200px;
-      height: 50px;
-      border-radius: 30px;
-      outline: none;
-      background-color: rgb(224, 3, 228);
-      font-weight: bold;
-      
+      height: 100px;
+      position: relative;
     }
-    a{
-      text-decoration: none;
+
+    .loader span {
+      width: 20px;
+      height: 100px;
+      top: 0;
+      position: absolute;
+      border-radius: 10px;
+
+    }
+
+    .loader span:nth-child(1) {
+      left: 0;
+      background-color: blue;
+      animation: loader 2s ease infinite;
+    }
+
+    .loader span:nth-child(2) {
+      left: 25px;
+      background-color: rgb(0, 0, 0);
+      animation: loader 2s ease infinite .15s;
+    }
+
+    .loader span:nth-child(3) {
+      left: 50px;
+      background-color: red;
+      animation: loader 2s ease infinite .3s;
+    }
+
+    .loader span:nth-child(4) {
+      left: 75px;
+      background-color: yellow;
+      animation: loader 2s ease infinite .45s;
+    }
+
+    .loader span:nth-child(5) {
+      left: 100px;
+      background-color: green;
+      animation: loader 2s ease infinite .6s;
+    }
+
+    .loader span:nth-child(6) {
+      left: 125px;
+      background-color: rgb(170, 0, 255);
+      animation: loader 2s ease infinite .75s;
+    }
+
+    .loader span:nth-child(7) {
+      left: 150px;
+      background-color: darkcyan;
+      animation: loader 2s ease infinite .9s;
+    }
+
+    .loader span:nth-child(8) {
+      left: 175px;
+      background-color: deeppink;
+      animation: loader 2s ease infinite 1.05s;
+    }
+
+    @keyframes loader {
+
+      0%,
+      50%,
+      100% {
+        transform: scale(1);
+      }
+
+      60% {
+        transform: scale(2);
+      }
+    }
+
+    #counter {
+      margin: 80px 0px 20px 0px;
+      font-size: 40px;
+      visibility: hidden;
+
+    }
+
+    .start-container {
+      position: absolute;
+      top: 0%;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: rgb(255, 255, 255);
+    }
+
+    #button {
+      padding: 15px 60px;
+      position: relative;
       font-size: 20px;
       color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(to right bottom, red, blue);
+
+    }
+
+    #button::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 30px;
+      height: 35px;
+      opacity: 0;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      background: linear-gradient(to right bottom, red, blue);
+      transition: all .5s ease;
+
+    }
+
+    #button::after {
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 30px;
+      height: 35px;
+      opacity: 0;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      background: linear-gradient(to right bottom, red, blue);
+      transition: all .5s ease;
+    }
+
+    #button:hover::before {
+      background-color: black;
+      opacity: 1;
+      top: -30px;
+      left: -20px;
+      animation: rotate 1s ease .5s;
+    }
+
+    #button:hover::after {
+      opacity: 1;
+      bottom: -30px;
+      right: -20px;
+      animation: rotate 1s ease .5s;
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    #htags {
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 30%;
+      flex-direction: column;
+    }
+
+    #primary-container {
+      display:none;
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      width: 100%;
+    }
+
+
+    /*  -------------------------------------------*/
+    .main-container {
+
+      height: 100vh;
+      font-family: sans-serif;
+      overflow: hidden;
+      background: linear-gradient(to right bottom, rgb(0, 255, 242), rgb(255, 0, 255));
+    }
+
+    .main-container .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+    }
+
+    .main-container .container .content1 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      flex-direction: column;
+      width: 50%;
+      gap: 20px;
+      animation: rightslide 1s ease;
+    }
+
+    @keyframes rightslide {
+      0% {
+        transform: translateY(-500px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .second-page .container2 .content3 {
+      width: 50%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    .main-container .container .content1 h1 {
+      font-size: 48px;
+    }
+
+    .main-container .container .content1 p {
+      margin: 20px 10px;
+      font-size: 18px;
+    }
+
+    .main-container .container .content1 button {
+      padding: 15px 60px;
+      font-weight: bold;
+      position: relative;
+      border-radius: 30px;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      transition: all 0.3s linear;
+    }
+
+    .main-container .container .content1 button::before {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right bottom, rgb(0, 234, 255), rgb(251, 0, 255));
+      transition: all 0.3s linear;
+      z-index: -1;
+    }
+
+    .main-container .container .content1 button:hover::before {
+      left: 0%;
+    }
+
+    .main-container .container .content1 button:hover {
+      color: rgb(255, 255, 255);
+    }
+
+    .main-container .container .content2 {
+      width: 50%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      animation: leftslide 1s ease;
+      z-index: 1;
+      
+
+    }
+
+    .main-container .container .content2 .shape {
+      background-color: rgb(124, 124, 124);
+      width: 70%;
+      height: 80%;
+      overflow: hidden;
+      position: relative;
+      -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      z-index: -1;
+    }
+
+    .main-container .container .content2 .shape::before{
+      content:'';
+      position: absolute;
+      bottom:-136%;
+      left: 0%;
+      width:80px;
+      height:1800px;
+      background-color: rgb(255, 255, 255);
+      transform: rotate(-58.5deg);
+      transition: all .3s linear;
+      z-index: 10;
+      overflow: hidden;
+    }
+
+    .main-container .container .content2 .shape:hover::before{
+      bottom: -300px ;
+      left: 1800px ;
+    }
+
+    .main-container .container .content2 .shape .myimg{
+      height: 100%;
+      width: 100%;
+       overflow: hidden;
+      transition: all .5s ease;
+      -o-object-fit: fill;
+      object-fit: cover;
+      -o-object-position: center;
+      object-position: center;
+      position: relative;
+      
+      
+    }
+  
+    
+    
+
+    .main-container .container .content2 .shape img:hover {
+      transform: scale(1.2)rotate(5deg);
+    }
+
+
+    .second-page {
+      height: 100vh;
+      font-family: sans-serif;
+      background: linear-gradient(to right top, rgb(0, 234, 255), rgb(251, 0, 255));
+
+    }
+
+    .second-page .container2 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+
+
+    }
+
+    @keyframes leftslide {
+      0% {
+        transform: translateY(500px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .second-page .container2 .content3 {
+      width: 50%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      color: white;
+
+
+    }
+
+    .second-page .container2 .content3 .shape {
+      background-color: rgb(233, 232, 232);
+      width: 70%;
+      height: 80%;
+      -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    }
+
+    .second-page .container2 .content4 {
+      width: 50%;
+      height: 100%;
+      flex-direction: column;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+
+      padding: 0px 30px 0px 0px;
+    }
+
+    .second-page .container2 .content4 h1 {
+      font-size: 50px;
+      margin-bottom: 20px;
+      color: rgb(0, 0, 0);
+    }
+
+    .second-page .container2 .content4 p {
+      font-size: 20px;
+      line-height: 35px;
+      text-align: justify;
+      color: white;
+    }
+
+    .page3 {
+      height: 100vh;
+      box-sizing: border-box;
+      overflow: hidden;
+      background-color: #ffffff;
+      color: #000000;
+
+    }
+
+    .page3 .split {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    .page3 .split .sc {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      flex-direction: column;
+      padding: 20px;
+      width: 50%;
+      text-align: left !important;
+      align-items: flex-start;
+      padding: 0px 40px;
+    }
+
+    .page3 .split .sc p {
+      font-size: 30px;
+      margin: 10px 0px 20px 30px;
+    }
+
+    .page3 .split .sc .skill {
+      width: 100%;
+      margin-bottom: 50px;
+      height: 30px;
+      border-radius: 30px;
+      background-color: #bbb5b5;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page3 .split .sc .skill::before {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      width: 90%;
+      height: 100%;
+      background-color: rgb(255, 111, 0);
+    }
+
+    .page3 .split .sc .skill.css::before {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      width: 80%;
+      height: 100%;
+      background-color: rgb(0, 94, 255);
+    }
+
+    .page3 .split .sc .skill.js::before {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      width: 60%;
+      height: 100%;
+      background-color: rgb(255, 234, 0);
+    }
+
+    .page3 .split .sc .skill.scss::before {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      width: 40%;
+      height: 100%;
+      background-color: rgb(255, 0, 106);
+    }
+
+    .page3 .split .technology {
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 20% 50%);
+
+    }
+
+    .page3 .split .technology .imge {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition: all .5s ease;
+    }
+
+    #imge:hover {
+      transform: scale(1.3)rotate(5deg);
+    }
+
+    .page4 {
+      height: 100vh;
+      width: 100%;
+
+    }
+
+    .login {
+      position: relative;
+      width: 450px;
+      height: 500px;
+      padding: 80px 50px 50px;
+      box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.1), -15px -15px 20px #dbd9dbab;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .login>form {
+      width: 100%;
+      position: relative;
+    }
+
+    .login>form>h2 {
+      font-size: 1.9em;
+      margin-bottom: 30px;
+    }
+
+    .login>form>h2>span {
+      font-weight: lighter;
+      font-size: 20px;
+      opacity: 0.8;
+    }
+
+    .login>form .inputbox {
+      display: flex;
+      position: relative;
+    }
+
+    .login>form .inputbox input {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      border-radius: 10px;
+      font-size: 1em;
+    }
+
+    .login>form .inputbox input[type='text'],
+    .login>form .inputbox input[type='password'] {
+      width: 100%;
+      padding: 15px 20px;
+      padding-left: 40px;
+      margin-bottom: 20px;
+      box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px #fff;
+
+    }
+
+    .login>form .inputbox>i {
+      position: absolute;
+      top: 25%;
+      left: 20px;
+    }
+
+    .login>form label {
+      display: flex;
+      align-items: center;
+    }
+
+    .login>form input[type='checkbox'] {
+      margin-right: 5px;
+    }
+
+    .login>form .inputbox input[type='submit'] {
+      margin-top: 20px;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), -5px -5px 10px #fff;
+      width: 100%;
+      padding: 15px 20px;
+      font-weight: 600;
+    }
+
+    .login>form .inputbox input[type='submit']:focus {
+      box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px #fff;
+    }
+
+    .loginforms {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      background-color: rgb(255, 255, 255);
+    }
+
+    #white {
+      color: white;
+    }
+
+    .social-icons {
+      width: 50%;
+      padding: 0px 120px 0px 0px;
+      height: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .social-icons>img {
+      width: 80%;
+    }
+
+    #butterfly {
+      position: absolute;
+      right: 20%;
+      bottom: 20%;
+      width: 150px;
+      height: 150px;
+      animation: butterfly 1s ease 2s;
+    }
+
+    @keyframes butterfly {
+      0% {
+        transform: translateY(500px);
+      }
+
+      100% {
+        transform: translateY(-2000px);
+      }
+    }
+
+    #header{
+      position: absolute;
+      top: 0%;
+      width: 100%;
+      z-index: 100;
+      display:flex;
+     
+      align-items: center;
+      height:80px;
+      padding: 0px 20px;
+     
+      
+    }
+ ul>li{
+  list-style: none;
+ }
+    .atag,li{
+      flex-grow: 1;
+      text-decoration: none;
+      font-size: 25px;
+      font-family: sans-serif;
+      font-weight: bold;
+      color: white;
+      transition: all .5s ease;
+      position: relative;
+      
+    }
+    nav{
+      width: 70%;
+      
+    }
+    nav>ul{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      
+    }
+    .atag::before{
+      position: absolute;
+      top: 0;
+      left: 0%;
+      content: '';
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      border-radius: 30px;
+      transform: scale(0);
+      background-color: black;
+      transition: all .2s ease;
      
     }
-    p{
-    line-height: 25px;
-    font-family: cursive;
-    color: #ffffff;
-    margin-bottom: 20px;
+    .atag:hover::before{
+      transform: scale(1);
     }
+    .atag:active{
+      transform: scale(1);
+    
+    }
+    .atag{
+      padding:7px 15px ;
+    }
+    #headh1{
+      font-family: sans-serif;
+      width: 30%;
+      color: #fff;
+    }
+
+    @media screen and (max-width:768px) {
+      .main-container .container .content1 {
+        height: 100%;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        animation: rightslide 1s ease;
+      }
+      .main-container .container .content2 .shape::before{
+      content:'';
+      position: absolute;
+      bottom:-164%;
+      left: 0%;
+      width:80px;
+      height:1500px;
+      background-color: rgb(255, 255, 255);
+      transform: rotate(-63deg);
+      transition: all .3s linear;
+      z-index: 10;
+    }
+
+      @keyframes leftslide {
+        0% {
+          transform: translateX(500px);
+        }
+
+        100% {
+          transform: translateX(0px);
+        }
+      }
+
+      @keyframes rightslide {
+        0% {
+          transform: translateX(-500px);
+        }
+
+        100% {
+          transform: translateX(0px);
+        }
+      }
+
+      .main-container,.page3,.page4{
+        padding: 10px;
+      }
+
+      .main-container .container {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .second-page .container2 .content3 {
+        width: 100%;
+      }
+
+      .main-container .container .content2 {
+        width: 100%;
+        animation: leftslide 1s ease;
+
+      }
+
+      .main-container .container .content2 .shape {
+        width: 80%;
+        height: 100%;
+      }
+
+      .second-page .container2 {
+        flex-direction: column-reverse;
+      }
+
+      .second-page {
+        padding: 10px 10px 25px 10px;
+
+      }
+
+      .second-page .container2 .content3 {
+        width: 100%;
+        height: 100%;
+      }
+
+      .second-page .container2 .content3 .shape {
+        background-color: rgb(0, 0, 0);
+        width: 80%;
+        height: 100%;
+       
+      }
+
+      .second-page .container2 .content4 {
+        width: 100%;
+        flex-direction: column;
+        padding: 0px 30px 0px 0px;
+      }
+      
+      .page3 .split {
+        width: 100%;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .main-container .container .content1 h1 {
+        font-size: 28px;
+      }
+
+      .main-container .container .content1 p {
+        margin: 10px 10px;
+      }
+
+      .page3 .split .sc {
+        flex-direction: column;
+        padding: 10px;
+        width: 100%;
+        text-align: left !important;
+        align-items: flex-start;
+        padding: 10px;
+      }
+
+      .page3 .split .sc p {
+        font-size: 20px;
+        margin: 10px 0px 10px 20px;
+      }
+
+      .page3 .split .sc .skill {
+        width: 100%;
+        margin-bottom: 20px;
+        height: 30px;
+        border-radius: 30px;
+
+      }
+      .page3 .split .technology {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-top-right-radius: 50%;
+        border-top-left-radius: 50%;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 80% 100%, 20% 100%, 0% 80%);
+      }
+      .page3 .split .technology .imge {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transition: all .5s ease;
+      }
+      .loginforms {
+        flex-direction: column-reverse;
+        width: 100%;
+        background-color: rgb(255, 255, 255);
+      }
+      .social-icons {
+        width: 100%;
+        padding: 0px 0px 0px 0px;
+        height: 70%;
+      }
+      .social-icons>img {
+        width: 250px;
+        height: 250px;
+      }
+      .login {
+        width: 100%;
+        height: 1500px;
+        padding: 10px;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .second-page .container2 .content4 h1 {
+        font-size: 35px;
+        margin-bottom: 20px;
+        color: #fff;
+      }
+
+
+    .second-page .container2 .content4 p {
+      font-size: 20px;
+      line-height: 35px;
+      text-align: justify;
+      color: white;
+    }
+    header,nav,header>h1{
+      display: none;
+    }
+    }
+
+
+    /* ------------------------------ */
+
+    /* @media screen and (min-width:768px){
+      .main-container .container .content1 {
+        height: 100%;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        animation: rightslide 1s ease;
+      }
+
+      @keyframes leftslide {
+        0% {
+          transform: translateX(500px);
+        }
+
+        100% {
+          transform: translateX(0px);
+        }
+      }
+
+      @keyframes rightslide {
+        0% {
+          transform: translateX(-500px);
+        }
+
+        100% {
+          transform: translateX(0px);
+        }
+      }
+
+      .main-container,.page3,.page4{
+        padding: 10px;
+      }
+
+      .main-container .container {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .second-page .container2 .content3 {
+        width: 100%;
+      }
+
+      .main-container .container .content2 {
+        width: 100%;
+        animation: leftslide 1s ease;
+
+      }
+
+      .main-container .container .content2 .shape {
+        width:60%;
+        height: 110%;
+        margin-bottom: 50px;
+      }
+
+      .second-page .container2 {
+        flex-direction: column-reverse;
+      }
+
+      .second-page {
+        padding: 10px 10px 25px 10px;
+
+      }
+
+      .second-page .container2 .content3 {
+        width: 100%;
+        height: 100%;
+      }
+
+      .second-page .container2 .content3 .shape {
+        background-color: rgb(49, 46, 46);
+        width: 60%;
+        height: 110%;
+        margin-bottom: 50px;
+       
+      }
+
+      .second-page .container2 .content4 {
+        width: 100%;
+        flex-direction: column;
+        padding: 0px 30px 0px 0px;
+      }
+      
+      .page3 .split {
+        width: 100%;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .main-container .container .content1 h1 {
+        font-size: 58px;
+      }
+
+      .main-container .container .content1 p {
+        font-size: 25px;
+        margin: 10px 10px;
+      }
+
+      .page3 .split .sc {
+        flex-direction: column;
+        padding: 10px;
+        width: 100%;
+        text-align: left !important;
+        align-items: flex-start;
+        padding: 10px;
+      }
+
+      .page3 .split .sc p {
+        font-size: 20px;
+        margin: 10px 0px 10px 20px;
+      }
+
+      .page3 .split .sc .skill {
+        width: 100%;
+        margin-bottom: 20px;
+        height: 30px;
+        border-radius: 30px;
+
+      }
+      .page3 .split .technology {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-top-right-radius: 50%;
+        border-top-left-radius: 50%;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 80%, 80% 100%, 20% 100%, 0% 80%);
+      }
+      .page3 .split .technology .imge {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transition: all .5s ease;
+      }
+      .loginforms {
+        flex-direction: column-reverse;
+        width: 100%;
+        background-color: rgb(255, 255, 255);
+      }
+      .social-icons {
+        width: 100%;
+        padding: 0px 0px 0px 0px;
+        height: 70%;
+      }
+      .social-icons>img {
+        width: 250px;
+        height: 250px;
+      }
+      .login {
+        width: 100%;
+        height: 1500px;
+        padding: 10px;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .second-page .container2 .content4 h1 {
+        font-size: 55px;
+        margin-bottom: 20px;
+        color: #fff;
+      }
+      .second-page .container2 .content4 p {
+        font-size: 25px;
+        line-height: 30px;
+        text-align: center;
+      }
+    } */
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <h1 class="h1"> 2nd year ECE-B section Maths HW
-    </h1>
-    <p>You have to put numbers from 1 to 9 in a manner so that respective row, column and diagonal add up to 15.</p>
-    <div class="boxes">
-      <input  id="firstbox" pattern="[1-9]" class="ibox inputbox" type="tel" maxlength="1">
-      <input id="secondbox" pattern="[1-9]" class="ibox inputbox" type="tel" maxlength="1">
-      <input id="thirdbox" pattern="[1-9]" class="ibox inputbox" type="tel" maxlength="1">
-      <input id="fourthbox" pattern="[1-9]" class="ibox inputbox" type="tel" maxlength="1">
-      <input id="fifthbox" pattern="[1-9]" class="ibox inputbox" type="tel" maxlength="1">
-      <input id="sixthbox" pattern="[1-9]" class="ibox inputbox" type="tel" maxlength="1">
-      <input id="seventhbox" pattern="[1-9]" class="ibox inputbox" type="tel" maxlength="1">
-      <input id="eightbox" pattern="[1-9]" class="ibox inputbox" type="tel" maxlength="1">
-      <input id="ninthbox" pattern="[1-9]" class="ibox inputbox" type="tel" maxlength="1">
-      
+   <div class="start-container">
+    <div class="start">
+      <button id="button">Get Start</button>
     </div>
-    <div id="error"></div>
-    <button><a href="">Reset</a></button>
   </div>
+  <div class="load-container" id="load">
+    <div class="loader">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div id="htags">
+      <h1 id="counter"></h1>
+      <h1 id="loads">Loading...</h1>
+    </div>
+  </div>
+
+  <!-- 
+    ------------------------------------------
+   -->
+   <div class="head">
+    <header id="header">
+      <h1 id="headh1">Portfolio</h1>
+      <nav>
+        <ul >
+         <li><a class="atag actve" href="">Home</a></li>
+         <li><a class="atag" href="#second">About</a></li>
+         <li><a class="atag" href="#third">My Skills</a></li>
+         <li><a class="atag" href="#forth">contact Me</a></li>
+        </ul>
+      </nav>
+    </header>
+   </div>
+  <div id="primary-container">
+    <div class="main-container">
+      <div class="container">
+        <div class="content1">
+          <h1>Hey.! Hello I Am <span id="white">Naveen</span></h1>
+          <p>I Enjoy Designing Tech Websites And Digital Products</p>
+          <button>Get Connect</button>
+        </div>
+        <div class="content2">
+          <div class="shape">
+            <img class="myimg" src="img.jpg" alt="">
+            <div class="pseudoelement"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="second"  class="second-page">
+      <div class="container2">
+        <div class="content3">
+          <div class="shape">
+            <img id="butterfly" src="giphy.gif" alt="">
+          </div>
+        </div>
+        <div class="content4">
+
+          <h1>About Me</h1>
+          <p>Hey! hi..I am currently learning JavaScript..Now i can create web pages using Hyper Text Markup Language(HTML) and Cascading Style Sheet(CSS) with animation what ever design you want..And my Aim to become a fullstack developer and i love what i do...
+          </p>
+        </div>
+      </div>
+    </div>
+    <div id="third" class="page3">
+      <div class="split">
+        <div class="sc">
+          <p>HTML</p>
+          <div class="skill">70%</div>
+          <p>CSS</p>
+          <div class="skill css">60%</div>
+          <p>JAVASCRIPT</p>
+          <div class="skill js">30%</div>
+          <p>SASS</p>
+          <div class="skill scss"></div>
+        </div>
+        <div class="technology">
+          <img class="imge" id="imge" src="web.jpg" alt="">
+        </div>
+      </div>
+    </div>
+    <div id="forth" class="page4">
+      <div class="loginforms">
+        <div class="social-icons">
+          <img src="social-icons.png" alt="">
+        </div>
+        <div class="login">
+          <form action="">
+            <h2>Hello! <br><span>Welcome Back!</span></h2>
+            <div class="inputbox">
+              <input type="text" placeholder="UserName">
+              <i class="fa-regular fa-user"></i>
+            </div>
+            <div class="inputbox">
+              <input type="password" placeholder="Password">
+              <i class="fa-solid fa-lock"></i>
+            </div>
+            <label for="">
+              <input type="checkbox">Keep me logged in
+            </label>
+            <div class="inputbox">
+              <input type="submit" value="Log in">
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
   <script>
-    let b=[];
-    let firstbox =document.querySelectorAll('.ibox');
-    firstbox.forEach((n)=>{
-      
-      n.addEventListener("input",()=>{
-        
-      if(b.includes(n.value)){
-        document.getElementById('error').innerHTML=`${n.value}`+" is already entered";
-        return false;
-      }else{
-        b.push(n.value)
-        document.getElementById('error').innerHTML="";
-        return true;
-      }
-      });
-      
-      
+    let btn = document.getElementById('button');
+    let load = document.getElementById('load');
+    let coultbtn = document.getElementById('counter')
+    let pc=document.getElementById('primary-container')
+    btn.addEventListener('click', () => {
+      btn.style.visibility = 'hidden';
+      load.style.visibility = 'visible';
+      coultbtn.style.visibility = 'visible';
+      const audio = new Audio();
+      audio.src = './audio.mp3.mp3'
+      audio.play()
+
+      //---------------settimeout-------------
+
+      let counter = document.getElementById('counter');
+      let count = 1;
+      setInterval(() => {
+        if (count <= 99)
+          count++;
+        counter.innerHTML = count + '%';
+
+      }, 150)
+
+
+      setTimeout(() => {
+        document.getElementById('loads').innerHTML = "Almost Completed..";
+        load.style.visibility = 'hidden';
+        coultbtn.style.display='none';
+        pc.style.display='block'
+      }, 15500)
+
     })
-      
-      
-    
+
+
+
   </script>
 </body>
+
 </html>
